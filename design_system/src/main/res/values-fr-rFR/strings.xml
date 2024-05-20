@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_tab_title">Acceuil</string>
+    <string name="favorite_tab_title">Favoris</string>
+</resources>

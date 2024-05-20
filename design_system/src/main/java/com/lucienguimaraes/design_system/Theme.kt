@@ -1,20 +1,18 @@
 package com.lucienguimaraes.design_system
 
-
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Shapes
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Typography
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.lucienguimaraes.design_system.typography.appTypography
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = darkColorScheme(
     primary = MyJokesColor.Green.base,
-    primaryVariant = MyJokesColor.Green.darkenVariant,
     secondary = MyJokesColor.Green.base,
     background = Color.Black,
     surface = MyJokesColor.Grey.eerieBlack,
@@ -25,9 +23,8 @@ private val DarkColorPalette = darkColors(
     error = MyJokesColor.Red.darken,
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPalette = lightColorScheme(
     primary = MyJokesColor.Green.base,
-    primaryVariant = MyJokesColor.Green.sea,
     secondary = MyJokesColor.Green.base,
     background = MyJokesColor.Grey.cultureLight,
     surface = Color.White,
@@ -52,8 +49,8 @@ fun MyJokesTheme(content: @Composable () -> Unit) {
         LightColorPalette
     }
     MaterialTheme(
-        colors = colors,
-        typography = appTypography,
+        colorScheme = colors,
+        typography = Typography(),
         shapes = shapes,
         content = content,
     )
