@@ -21,9 +21,9 @@ internal sealed class AppNavigationItem(
 internal val AppNavigationItemLists = listOf(AppNavigationItem.Home, AppNavigationItem.Favorite)
 
 internal val AppNavigationItemColors = NavigationBarItemColors(
-    selectedIconColor = MyJokesColor.Green.sea,
-    selectedTextColor = MyJokesColor.Green.sea,
-    selectedIndicatorColor = MyJokesColor.Green.sea.copy(alpha = 0.2f),
+    selectedIconColor = MyJokesColor.Blue.base,
+    selectedTextColor = MyJokesColor.Blue.base,
+    selectedIndicatorColor = MyJokesColor.Blue.base.copy(alpha = 0.2f),
     unselectedIconColor = MyJokesColor.Grey.lighten10,
     unselectedTextColor = MyJokesColor.Grey.lighten10,
     disabledIconColor = MyJokesColor.Grey.lighten10.copy(alpha = 0.2f),

@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 private val DarkColorPalette = darkColorScheme(
-    primary = MyJokesColor.Green.base,
-    secondary = MyJokesColor.Green.base,
+    primary = MyJokesColor.Blue.base,
+    secondary = MyJokesColor.Blue.lighten1,
     background = Color.Black,
     surface = MyJokesColor.Grey.eerieBlack,
     onPrimary = Color.White,
@@ -24,8 +24,8 @@ private val DarkColorPalette = darkColorScheme(
 )
 
 private val LightColorPalette = lightColorScheme(
-    primary = MyJokesColor.Green.base,
-    secondary = MyJokesColor.Green.base,
+    primary = MyJokesColor.Blue.base,
+    secondary = MyJokesColor.Blue.lighten1,
     background = MyJokesColor.Grey.cultureLight,
     surface = Color.White,
     onPrimary = Color.White,
