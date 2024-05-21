@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -56,7 +57,7 @@ fun FavoriteButton(
             imageVector = if (favorite) {
                 Icons.Rounded.Favorite
             } else {
-                Icons.Outlined.Favorite
+                Icons.Outlined.FavoriteBorder
             },
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onSurface,
@@ -66,7 +67,7 @@ fun FavoriteButton(
 
 @Composable
 @ThemeModePreviews
-fun FavoriteButtonPreview() {
+internal fun FavoriteButtonPreview() {
     MyJokesTheme {
         Surface {
             Box {

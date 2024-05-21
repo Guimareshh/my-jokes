@@ -3,6 +3,7 @@ package com.lucienguimaraes.joke
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lucienguimaraes.datasource.JokeEntity
 import com.lucienguimaraes.datasource.JokeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,20 +20,21 @@ class JokeViewModel @Inject constructor(private val jokeRepository: JokeReposito
             jokeRepository
                 .fetchJoke()
                 .onSuccess { joke ->
-                    uiState.value = uiState.value.copy(
-                        loading = false,
-                        joke = joke.content
-                    )
+                    uiState.value = uiState.value.copy(loading = false, joke = joke)
                 }
                 .onFailure {
                     uiState.value = uiState.value.copy(loading = false, error = true)
                 }
         }
     }
+
+    fun saveJoke() {
+        //TODO to implement
+    }
 }
 
 data class JokeUIState(
     val error: Boolean = false,
     val loading: Boolean = false,
-    val joke: String? = null,
+    val joke: JokeEntity? = null,
 )

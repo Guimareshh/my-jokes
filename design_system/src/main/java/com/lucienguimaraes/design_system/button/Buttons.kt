@@ -46,7 +46,7 @@ fun MainButton(
 
 @Composable
 @ThemeModePreviews
-fun MainButtonPreview() {
+internal fun MainButtonPreview() {
     MyJokesTheme {
         MainButton(onClick = {}, text = "Click me!")
     }
@@ -54,7 +54,7 @@ fun MainButtonPreview() {
 
 @Composable
 @ThemeModePreviews
-fun MainButtonLoadingPreview() {
+internal fun MainButtonLoadingPreview() {
     MyJokesTheme {
         MainButton(
             onClick = {},

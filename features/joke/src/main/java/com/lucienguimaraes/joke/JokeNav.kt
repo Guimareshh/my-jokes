@@ -19,6 +19,7 @@ fun NavGraphBuilder.addJoke(root: Screen) {
             modifier = Modifier.fillMaxSize(),
             jokeUIState = uiState,
             onGetJokeClick = viewModel::fetchNewJoke,
+            onFavoriteClick = viewModel::saveJoke,
         )
     }
 }
