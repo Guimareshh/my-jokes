@@ -58,6 +58,13 @@ internal class JokeRepositoryImpl @Inject constructor(
     }
 
     /**
+     * Remove the joke by id from local DB
+     */
+    override suspend fun deleteJoke(jokeId: Long) {
+        jokeDao.deleteById(jokeId)
+    }
+
+    /**
      * Remove the joke from local DB and return the check without being in favorite
      */
     override suspend fun deleteJoke(joke: JokeEntity): Result<JokeEntity> = try {
@@ -72,5 +79,7 @@ interface JokeRepository {
     fun listenAllJoke(): Flow<List<JokeEntity>>
     suspend fun fetchJoke(): Result<JokeEntity>
     suspend fun saveJoke(joke: JokeEntity): Result<JokeEntity>
+
+    suspend fun deleteJoke(jokeId: Long)
     suspend fun deleteJoke(joke: JokeEntity): Result<JokeEntity>
 }

@@ -20,7 +20,6 @@ fun NavGraphBuilder.addJokeList(root: Screen) {
             modifier = Modifier.fillMaxSize(),
             jokeListUIState = uiState,
             onDeleteClick = viewModel::onDeleteJoke,
-            onDismissDialog = viewModel::dismissError,
         )
     }
 }

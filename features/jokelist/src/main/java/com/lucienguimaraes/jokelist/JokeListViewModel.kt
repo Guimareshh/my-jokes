@@ -20,22 +20,14 @@ class JokeListViewModel @Inject constructor(private val jokeRepository: JokeRepo
         .map { jokeList -> JokeListUIState(jokeList = jokeList) }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
+            started = SharingStarted.WhileSubscribed(),
             initialValue = JokeListUIState(),
         )
 
     fun onDeleteJoke(jokeId: Long) {
         viewModelScope.launch {
-           /* jokeRepository
-                .deleteJoke(jokeId)
-                .onFailure {
-                    uiState.value = uiState.value.copy(loading = false, error = true)
-                }*/
+            jokeRepository.deleteJoke(jokeId)
         }
-    }
-
-    fun dismissError() {
-      //  uiState.value = uiState.value.copy()
     }
 }
 

@@ -21,4 +21,7 @@ internal interface JokeDao {
 
     @Delete
     suspend fun delete(joke: JokeEntity)
+
+    @Query("DELETE FROM joke_entity WHERE id = :jokeId")
+    suspend fun deleteById(jokeId: Long)
 }
