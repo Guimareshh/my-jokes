@@ -1,6 +1,5 @@
 package com.lucienguimaraes.jokelist
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,7 +13,6 @@ import androidx.compose.ui.unit.dp
 import com.lucienguimaraes.design_system.MyJokesTheme
 import com.lucienguimaraes.design_system.ThemeModePreviews
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun JokeListScreen(
     modifier: Modifier = Modifier,
@@ -30,7 +28,6 @@ internal fun JokeListScreen(
         ) {
             items(items = jokeListUIState.jokeList, key = { joke -> joke.id }) { joke ->
                 JokeCard(
-                    modifier = Modifier.animateItemPlacement(),
                     joke = joke,
                     onDeleteClick = { onDeleteClick(joke.id) },
                 )
