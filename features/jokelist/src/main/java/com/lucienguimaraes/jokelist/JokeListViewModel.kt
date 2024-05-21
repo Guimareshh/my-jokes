@@ -31,8 +31,4 @@ class JokeListViewModel @Inject constructor(private val jokeRepository: JokeRepo
     }
 }
 
-data class JokeListUIState(
-    val error: Boolean = false,
-    val loading: Boolean = false,
-    val jokeList: List<JokeEntity> = emptyList(),
-)
+data class JokeListUIState(val jokeList: List<JokeEntity> = emptyList())

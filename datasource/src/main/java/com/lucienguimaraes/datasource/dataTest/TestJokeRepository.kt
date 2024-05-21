@@ -1,4 +1,4 @@
-package com.lucienguimaraes.joke
+package com.lucienguimaraes.datasource.dataTest
 
 import com.lucienguimaraes.datasource.JokeRepository
 import com.lucienguimaraes.datasource.entities.JokeEntity

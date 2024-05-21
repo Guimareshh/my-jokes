@@ -1,6 +1,8 @@
 package com.lucienguimaraes.joke
 
 import com.lucienguimaraes.datasource.JokeRepository
+import com.lucienguimaraes.datasource.dataTest.ErrorJokeRepository
+import com.lucienguimaraes.datasource.dataTest.SuccessJokeRepository
 import com.lucienguimaraes.datasource.entities.JokeEntity
 import com.lucienguimaraes.datasource.entities.jokeEntityFavorite
 import com.lucienguimaraes.datasource.entities.jokeEntityNoFavorite
