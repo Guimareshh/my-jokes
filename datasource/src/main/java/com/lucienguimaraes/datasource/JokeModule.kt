@@ -1,7 +1,6 @@
-package com.lucienguimaraes.joke
+package com.lucienguimaraes.datasource
 
 import com.lucienguimaraes.network.NetworkConnector
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,7 +8,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-object JokeModule {
+internal object JokeModule {
 
     @Provides
     fun provideJokeRepository(

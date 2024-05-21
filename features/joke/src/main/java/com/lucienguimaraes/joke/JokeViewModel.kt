@@ -3,8 +3,8 @@ package com.lucienguimaraes.joke
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lucienguimaraes.datasource.JokeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,7 +21,7 @@ class JokeViewModel @Inject constructor(private val jokeRepository: JokeReposito
                 .onSuccess { joke ->
                     uiState.value = uiState.value.copy(
                         loading = false,
-                        joke = joke.content?.joinToString("\n")
+                        joke = joke.content
                     )
                 }
                 .onFailure {
