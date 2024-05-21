@@ -23,3 +23,4 @@ rootProject.name = "MyJokes"
 include(":app")
 include(":design_system")
 include(":network")
+include(":features:joke")

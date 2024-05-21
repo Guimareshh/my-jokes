@@ -1,4 +1,4 @@
-package com.lucienguimaraes.myjokes.ui
+package com.lucienguimaraes.design_system.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect

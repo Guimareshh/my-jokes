@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Mes blagues</string>
+    <string name="get_a_joke">Nouvelle blague</string>
     <string name="home_tab_title">Acceuil</string>
     <string name="favorite_tab_title">Favoris</string>
+    <string name="joke_placeholder">Appuyer sur le bouton pour avoir une nouvelle blague</string>
 </resources>
