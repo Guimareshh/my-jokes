@@ -7,7 +7,6 @@ import com.lucienguimaraes.datasource.network.responses.JokeType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 internal class JokeRepositoryImpl @Inject constructor(
@@ -60,8 +59,11 @@ internal class JokeRepositoryImpl @Inject constructor(
     /**
      * Remove the joke by id from local DB
      */
-    override suspend fun deleteJoke(jokeId: Long) {
+    override suspend fun deleteJoke(jokeId: Long): Result<Unit> = try {
         jokeDao.deleteById(jokeId)
+        Result.success(Unit)
+    } catch (exception: Exception) {
+        Result.failure(exception)
     }
 
     /**
@@ -80,6 +82,6 @@ interface JokeRepository {
     suspend fun fetchJoke(): Result<JokeEntity>
     suspend fun saveJoke(joke: JokeEntity): Result<JokeEntity>
 
-    suspend fun deleteJoke(jokeId: Long)
+    suspend fun deleteJoke(jokeId: Long): Result<Unit>
     suspend fun deleteJoke(joke: JokeEntity): Result<JokeEntity>
 }

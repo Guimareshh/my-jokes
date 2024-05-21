@@ -1,8 +1,10 @@
 package com.lucienguimaraes.datasource
 
+import app.cash.turbine.test
 import com.lucienguimaraes.datasource.entities.JokeEntity
 import com.lucienguimaraes.datasource.network.JokeApi
 import com.lucienguimaraes.datasource.network.responses.JokeResponse
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -105,6 +107,61 @@ internal class JokeRepositoryTest {
             )
         }
     }
+
+    @Test
+    fun `Given a success listen jokes it should return a flow of list of joke`() {
+        runBlocking {
+            class TestJokeApi : JokeApi {
+                override suspend fun getJoke(safeMode: Boolean): JokeResponse = jokeResponseTwoPart()
+            }
+
+            val repository: JokeRepository = JokeRepositoryImpl(SuccessTestJokeDao(), TestJokeApi())
+
+            repository.listenAllJoke().test {
+                assertEquals(
+                    listOf(
+                        JokeEntity(
+                            id = 23,
+                            content = "There are only 10 kinds of people in this world: those who know binary and those who don't.",
+                            favorite = true,
+                        )
+                    ), awaitItem()
+                )
+                awaitComplete()
+            }
+        }
+    }
+
+    @Test
+    fun `Given a null on listen jokes it should complete`() {
+        runBlocking {
+            class TestJokeApi : JokeApi {
+                override suspend fun getJoke(safeMode: Boolean): JokeResponse = jokeResponseTwoPart()
+            }
+
+            val repository: JokeRepository = JokeRepositoryImpl(EmptyTestJokeDao(), TestJokeApi())
+
+            repository.listenAllJoke().test {
+                awaitComplete()
+            }
+        }
+    }
+
+    @Test
+    fun `Given a fail to listen jokes it should return a flow of empty list of joke`() {
+        runBlocking {
+            class TestJokeApi : JokeApi {
+                override suspend fun getJoke(safeMode: Boolean): JokeResponse = jokeResponseTwoPart()
+            }
+
+            val repository: JokeRepository = JokeRepositoryImpl(ErrorTestJokeDao(), TestJokeApi())
+
+            repository.listenAllJoke().test {
+                assertEquals(emptyList<JokeEntity>(), awaitItem())
+                awaitComplete()
+            }
+        }
+    }
     //endregion
 
     //region save joke
@@ -201,6 +258,32 @@ internal class JokeRepositoryTest {
             )
 
             assertEquals(true, repository.deleteJoke(joke).isFailure)
+        }
+    }
+
+    @Test
+    fun `Given a success delete joke by id it should return void`() {
+        runBlocking {
+            class TestJokeApi : JokeApi {
+                override suspend fun getJoke(safeMode: Boolean): JokeResponse = jokeResponseSingle()
+            }
+
+            val repository: JokeRepository = JokeRepositoryImpl(SuccessTestJokeDao(), TestJokeApi())
+
+            assertEquals(Result.success(Unit), repository.deleteJoke(23))
+        }
+    }
+
+    @Test
+    fun `Given a fail to delete joke by id it should return an error`() {
+        runBlocking {
+            class TestJokeApi : JokeApi {
+                override suspend fun getJoke(safeMode: Boolean): JokeResponse = jokeResponseSingle()
+            }
+
+            val repository: JokeRepository = JokeRepositoryImpl(ErrorTestJokeDao(), TestJokeApi())
+
+            assertEquals(true, repository.deleteJoke(23).isFailure)
         }
     }
     //endregion
