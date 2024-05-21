@@ -7,6 +7,7 @@ import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.lucienguimaraes.design_system.MyJokesColor
+import com.lucienguimaraes.design_system.navigation.Screen
 import com.lucienguimaraes.design_system.R
 
 internal sealed class AppNavigationItem(

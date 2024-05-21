@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -18,11 +17,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.lucienguimaraes.design_system.MyJokesTheme
+import com.lucienguimaraes.joke.addJoke
 import com.lucienguimaraes.myjokes.ui.AppBottomBar
-import com.lucienguimaraes.myjokes.ui.LeafScreen
-import com.lucienguimaraes.myjokes.ui.Screen
-import com.lucienguimaraes.myjokes.ui.currentTopScreenAsState
+import com.lucienguimaraes.design_system.navigation.LeafScreen
+import com.lucienguimaraes.design_system.navigation.Screen
+import com.lucienguimaraes.design_system.navigation.currentTopScreenAsState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,11 +60,7 @@ class MainActivity : ComponentActivity() {
                                 route = Screen.Home.route,
                                 startDestination = LeafScreen.HomeJoke.createRoute(Screen.Home),
                             ) {
-                                composable(LeafScreen.HomeJoke.createRoute(Screen.Home)) {
-                                    Surface(modifier = Modifier.fillMaxSize()) {
-                                        Text(text = LeafScreen.HomeJoke.toString())
-                                    }
-                                }
+                                addJoke(Screen.Home)
                             }
                             navigation(
                                 route = Screen.Favorite.route,

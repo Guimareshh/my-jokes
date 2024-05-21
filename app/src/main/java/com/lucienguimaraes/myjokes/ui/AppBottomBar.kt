@@ -8,9 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.lucienguimaraes.design_system.navigation.Screen
 
 @Composable
-fun AppBottomBar(
+internal fun AppBottomBar(
     modifier: Modifier = Modifier,
     currentTopScreen: Screen,
     onScreenSelected: (Screen) -> Unit,

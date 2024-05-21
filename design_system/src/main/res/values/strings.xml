@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">My Jokes</string>
+    <string name="get_a_joke">Fetch a joke</string>
     <string name="home_tab_title">Home</string>
     <string name="favorite_tab_title">Favorites</string>
+    <string name="joke_placeholder">To get a joke click on the button</string>
+    <string name="generic_error_message">We\'re sorry, we\'re not able to process your request. Can you please try again later?</string>
+    <string name="ok">Ok</string>
 </resources>
