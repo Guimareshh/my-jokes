@@ -22,7 +22,9 @@ import com.lucienguimaraes.myjokes.ui.AppBottomBar
 import com.lucienguimaraes.design_system.navigation.LeafScreen
 import com.lucienguimaraes.design_system.navigation.Screen
 import com.lucienguimaraes.design_system.navigation.currentTopScreenAsState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

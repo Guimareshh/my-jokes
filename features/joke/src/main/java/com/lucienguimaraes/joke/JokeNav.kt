@@ -9,6 +9,10 @@ import com.lucienguimaraes.design_system.navigation.Screen
 
 fun NavGraphBuilder.addJoke(root: Screen) {
     composable(route = LeafScreen.HomeJoke.createRoute(root)) {
-        JokeScreen(Modifier.fillMaxSize())
+        JokeScreen(
+            modifier = Modifier.fillMaxSize(),
+            jokeUIState = JokeUIState(),
+            onGetJokeClick = { },
+        )
     }
 }

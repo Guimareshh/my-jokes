@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.com.google.devtools.ksp)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.com.google.dagger.hilt.android)
 }
 
 android {
@@ -45,8 +46,8 @@ dependencies {
     implementation(project(":design_system"))
 
     /*** DI Libraries ***/
-    implementation(libs.dagger)
-    ksp(libs.dagger.compiler)
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.android.compiler)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

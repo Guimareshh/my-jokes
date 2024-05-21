@@ -19,20 +19,29 @@ import com.lucienguimaraes.design_system.button.MainButton
 import com.lucienguimaraes.design_system.button.rememberButtonState
 
 @Composable
-fun JokeScreen(modifier: Modifier = Modifier) {
+fun JokeScreen(
+    modifier: Modifier = Modifier,
+    jokeUIState: JokeUIState,
+    onGetJokeClick: () -> Unit,
+) {
     Surface(modifier) {
-        Column(Modifier.fillMaxSize().padding(horizontal = 16.dp, vertical = 32.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp, vertical = 32.dp),
+        ) {
             Text(
                 modifier = Modifier.weight(1f),
                 text = stringResource(id = R.string.joke_placeholder),
                 style = MaterialTheme.typography.bodyLarge,
             )
             Spacer(Modifier.size(16.dp))
-            val validateButtonState = rememberButtonState()
+            val fetchJokeButtonState = rememberButtonState()
+            fetchJokeButtonState.loading = jokeUIState.loading
             MainButton(
                 modifier = Modifier,
-                buttonState = validateButtonState,
-                onClick = { /*TODO*/ },
+                buttonState = fetchJokeButtonState,
+                onClick = onGetJokeClick,
                 text = stringResource(id = R.string.get_a_joke)
             )
         }
@@ -43,6 +52,10 @@ fun JokeScreen(modifier: Modifier = Modifier) {
 @ThemeModePreviews
 fun JokeScreenPreview() {
     MyJokesTheme {
-        JokeScreen(Modifier.fillMaxSize())
+        JokeScreen(
+            modifier = Modifier.fillMaxSize(),
+            jokeUIState = JokeUIState(),
+            onGetJokeClick = {},
+        )
     }
 }

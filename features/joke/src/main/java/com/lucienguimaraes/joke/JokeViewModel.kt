@@ -9,16 +9,18 @@ class JokeViewModel(private val jokeRepository: JokeRepository) : ViewModel() {
 
     val uiState = mutableStateOf(JokeUIState())
 
-    fun fetchNewJoke() = viewModelScope.launch {
-        uiState.value = uiState.value.copy(loading = true)
-        jokeRepository
-            .fetchJoke()
-            .onSuccess { joke ->
-                uiState.value = uiState.value.copy(loading = false, joke = joke)
-            }
-            .onFailure {
-                uiState.value = uiState.value.copy(loading = false, error = true)
-            }
+    fun fetchNewJoke() {
+        viewModelScope.launch {
+            uiState.value = uiState.value.copy(loading = true)
+            jokeRepository
+                .fetchJoke()
+                .onSuccess { joke ->
+                    uiState.value = uiState.value.copy(loading = false, joke = joke)
+                }
+                .onFailure {
+                    uiState.value = uiState.value.copy(loading = false, error = true)
+                }
+        }
     }
 }
 
