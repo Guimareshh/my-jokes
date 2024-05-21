@@ -6,6 +6,8 @@ import com.lucienguimaraes.datasource.entities.jokeEntityFavorite
 import com.lucienguimaraes.datasource.entities.jokeEntityNoFavorite
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.setMain
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -90,6 +92,12 @@ internal class JokeViewModelTest {
 
             override suspend fun deleteJoke(joke: JokeEntity): Result<JokeEntity> =
                 Result.failure(Exception())
+
+            override suspend fun deleteJoke(jokeId: Long): Result<Unit> = Result.success(Unit)
+
+            override fun listenAllJoke(): Flow<List<JokeEntity>> = flow {
+                emit(listOf(jokeEntityFavorite()))
+            }
         }
         val viewModel = JokeViewModel(CustomJokeRepository())
         assertEquals(JokeUIState(), viewModel.uiState.value)
@@ -110,6 +118,12 @@ internal class JokeViewModelTest {
 
             override suspend fun deleteJoke(joke: JokeEntity): Result<JokeEntity> =
                 Result.failure(Exception())
+
+            override suspend fun deleteJoke(jokeId: Long): Result<Unit> = Result.success(Unit)
+
+            override fun listenAllJoke(): Flow<List<JokeEntity>> = flow {
+                emit(listOf(jokeEntityFavorite()))
+            }
         }
         val viewModel = JokeViewModel(CustomJokeRepository())
         assertEquals(JokeUIState(), viewModel.uiState.value)
