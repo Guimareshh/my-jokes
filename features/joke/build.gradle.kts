@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.com.google.devtools.ksp)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
@@ -42,6 +43,10 @@ dependencies {
 
     implementation(project(":network"))
     implementation(project(":design_system"))
+
+    /*** DI Libraries ***/
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

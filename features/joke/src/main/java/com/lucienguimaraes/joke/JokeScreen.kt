@@ -21,10 +21,11 @@ import com.lucienguimaraes.design_system.button.rememberButtonState
 @Composable
 fun JokeScreen(modifier: Modifier = Modifier) {
     Surface(modifier) {
-        Column(Modifier.fillMaxSize().padding(16.dp)) {
+        Column(Modifier.fillMaxSize().padding(horizontal = 16.dp, vertical = 32.dp)) {
             Text(
+                modifier = Modifier.weight(1f),
                 text = stringResource(id = R.string.joke_placeholder),
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyLarge,
             )
             Spacer(Modifier.size(16.dp))
             val validateButtonState = rememberButtonState()
