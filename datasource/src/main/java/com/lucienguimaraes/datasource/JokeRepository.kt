@@ -4,6 +4,10 @@ import com.lucienguimaraes.datasource.dao.JokeDao
 import com.lucienguimaraes.datasource.entities.JokeEntity
 import com.lucienguimaraes.datasource.network.JokeApi
 import com.lucienguimaraes.datasource.network.responses.JokeType
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 internal class JokeRepositoryImpl @Inject constructor(
@@ -34,6 +38,15 @@ internal class JokeRepositoryImpl @Inject constructor(
     }
 
     /**
+     * Listen to all saved jokes on database, return empty list in case of exception or null
+     */
+    override fun listenAllJoke(): Flow<List<JokeEntity>> = try {
+        jokeDao.listenAllJokeList().filterNotNull()
+    } catch (exception: Exception) {
+        flowOf(emptyList())
+    }
+
+    /**
      * Save the joke in local DB and setting it to favorite by default
      */
     override suspend fun saveJoke(joke: JokeEntity) = try {
@@ -56,6 +69,7 @@ internal class JokeRepositoryImpl @Inject constructor(
 }
 
 interface JokeRepository {
+    fun listenAllJoke(): Flow<List<JokeEntity>>
     suspend fun fetchJoke(): Result<JokeEntity>
     suspend fun saveJoke(joke: JokeEntity): Result<JokeEntity>
     suspend fun deleteJoke(joke: JokeEntity): Result<JokeEntity>
