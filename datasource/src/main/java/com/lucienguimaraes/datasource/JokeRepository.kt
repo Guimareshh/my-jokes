@@ -1,8 +1,15 @@
 package com.lucienguimaraes.datasource
 
+import com.lucienguimaraes.datasource.dao.JokeDao
+import com.lucienguimaraes.datasource.entities.JokeEntity
+import com.lucienguimaraes.datasource.network.JokeApi
+import com.lucienguimaraes.datasource.network.responses.JokeType
 import javax.inject.Inject
 
-internal class JokeRepositoryImpl @Inject constructor(private val jokeApi: JokeApi): JokeRepository {
+internal class JokeRepositoryImpl @Inject constructor(
+    private val jokeDao: JokeDao,
+    private val jokeApi: JokeApi,
+) : JokeRepository {
 
     /**
      * Fetch a new joke object from network and map it to a more concise and readable joke entity

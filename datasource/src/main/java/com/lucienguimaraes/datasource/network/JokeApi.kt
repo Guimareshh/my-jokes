@@ -1,5 +1,6 @@
-package com.lucienguimaraes.datasource
+package com.lucienguimaraes.datasource.network
 
+import com.lucienguimaraes.datasource.network.responses.JokeResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

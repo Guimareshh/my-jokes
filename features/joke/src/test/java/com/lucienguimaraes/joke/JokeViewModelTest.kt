@@ -1,8 +1,8 @@
 package com.lucienguimaraes.joke
 
-import com.lucienguimaraes.datasource.JokeEntity
+import com.lucienguimaraes.datasource.entities.JokeEntity
 import com.lucienguimaraes.datasource.JokeRepository
-import com.lucienguimaraes.datasource.jokeEntityNoFavorite
+import com.lucienguimaraes.datasource.entities.jokeEntityNoFavorite
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.setMain
@@ -21,7 +21,9 @@ internal class JokeViewModelTest {
     @Test
     fun `Given a click on fetch joke it should get a new joke`() {
         class TestJokeRepository : JokeRepository {
-            override suspend fun fetchJoke(): Result<JokeEntity> = Result.success(jokeEntityNoFavorite())
+            override suspend fun fetchJoke(): Result<JokeEntity> = Result.success(
+                jokeEntityNoFavorite()
+            )
         }
 
         val viewModel = JokeViewModel(TestJokeRepository())

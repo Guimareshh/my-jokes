@@ -1,5 +1,8 @@
 package com.lucienguimaraes.datasource
 
+import com.lucienguimaraes.datasource.entities.JokeEntity
+import com.lucienguimaraes.datasource.network.JokeApi
+import com.lucienguimaraes.datasource.network.responses.JokeResponse
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test

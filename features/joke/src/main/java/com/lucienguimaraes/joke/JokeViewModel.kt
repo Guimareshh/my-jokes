@@ -3,8 +3,9 @@ package com.lucienguimaraes.joke
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lucienguimaraes.datasource.JokeEntity
+import com.lucienguimaraes.datasource.entities.JokeEntity
 import com.lucienguimaraes.datasource.JokeRepository
+import com.lucienguimaraes.datasource.dao.JokeDao_Impl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

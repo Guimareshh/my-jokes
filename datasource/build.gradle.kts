@@ -37,6 +37,12 @@ android {
 dependencies {
     implementation(project(":network"))
 
+
+    /*** Database Libraries ***/
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.annotation)
+
     /*** API Libraries ***/
     implementation(platform(libs.retrofit.bom))
     implementation(libs.retrofit)
