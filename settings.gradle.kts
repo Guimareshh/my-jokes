@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "MyJokes"
 include(":app")
 include(":design_system")
+include(":network")
