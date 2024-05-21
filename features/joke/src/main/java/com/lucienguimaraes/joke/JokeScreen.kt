@@ -53,7 +53,11 @@ internal fun JokeScreen(
             ) {
                 FavoriteButton(
                     favorite = jokeUIState.joke?.favorite ?: false,
-                    onClick = onFavoriteClick,
+                    onClick = {
+                        if (jokeUIState.loading.not()) {
+                            onFavoriteClick()
+                        }
+                    }
                 )
             }
 

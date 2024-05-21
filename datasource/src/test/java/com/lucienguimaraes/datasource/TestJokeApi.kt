@@ -1,5 +1,8 @@
 package com.lucienguimaraes.datasource
 
+import com.lucienguimaraes.datasource.network.responses.JokeResponse
+import com.lucienguimaraes.datasource.network.responses.JokeType
+
 internal fun jokeResponseSingle() = JokeResponse(
     id = 23,
     joke = "There are only 10 kinds of people in this world: those who know binary and those who don't.",

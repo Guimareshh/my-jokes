@@ -1,4 +1,4 @@
-package com.lucienguimaraes.datasource
+package com.lucienguimaraes.datasource.network.responses
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
