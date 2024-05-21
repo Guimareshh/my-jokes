@@ -43,7 +43,7 @@ fun JokeCard(modifier: Modifier = Modifier, joke: JokeEntity, onDeleteClick: () 
             IconButton(modifier = modifier.size(48.dp), onClick = onDeleteClick) {
                 Icon(
                     imageVector = Icons.Rounded.Delete,
-                    contentDescription = null,
+                    contentDescription = "Delete",
                     tint = MaterialTheme.colorScheme.onSurface,
                 )
             }
