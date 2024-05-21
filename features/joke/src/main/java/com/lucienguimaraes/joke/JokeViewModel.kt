@@ -3,15 +3,20 @@ package com.lucienguimaraes.joke
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class JokeViewModel(private val jokeRepository: JokeRepository) : ViewModel() {
+@HiltViewModel
+class JokeViewModel @Inject constructor(private val jokeRepository: JokeRepository) : ViewModel() {
 
     val uiState = mutableStateOf(JokeUIState())
 
     fun fetchNewJoke() {
         viewModelScope.launch {
             uiState.value = uiState.value.copy(loading = true)
+            delay(2000L)
             jokeRepository
                 .fetchJoke()
                 .onSuccess { joke ->

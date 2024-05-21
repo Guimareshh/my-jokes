@@ -1,9 +1,11 @@
 package com.lucienguimaraes.joke
 
-class JokeRepositoryImpl(private val jokeApi: JokeApi): JokeRepository {
+import javax.inject.Inject
+
+class JokeRepositoryImpl @Inject constructor(): JokeRepository {
 
     override suspend fun fetchJoke(): Result<Joke> = try {
-        Result.success(jokeApi.getJoke(true))
+        Result.success(jokeMock())
     } catch (exception: Exception) {
         Result.failure(exception)
     }

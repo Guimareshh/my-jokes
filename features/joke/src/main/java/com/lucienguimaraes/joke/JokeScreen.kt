@@ -19,7 +19,7 @@ import com.lucienguimaraes.design_system.button.MainButton
 import com.lucienguimaraes.design_system.button.rememberButtonState
 
 @Composable
-fun JokeScreen(
+internal fun JokeScreen(
     modifier: Modifier = Modifier,
     jokeUIState: JokeUIState,
     onGetJokeClick: () -> Unit,
@@ -32,7 +32,7 @@ fun JokeScreen(
         ) {
             Text(
                 modifier = Modifier.weight(1f),
-                text = stringResource(id = R.string.joke_placeholder),
+                text = jokeUIState.joke?.content?.firstOrNull()?: stringResource(id = R.string.joke_placeholder),
                 style = MaterialTheme.typography.bodyLarge,
             )
             Spacer(Modifier.size(16.dp))

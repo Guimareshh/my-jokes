@@ -21,3 +21,10 @@ enum class JokeType(val value: String) {
     SINGLE("single"),
     TWO_PART("twopart"),
 }
+
+fun jokeMock() = Joke(
+    id = 23,
+    content = listOf("this is a joke"),
+    category = JokeCategory.ANY,
+    type = JokeType.SINGLE,
+)
