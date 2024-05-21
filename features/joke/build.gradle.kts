@@ -45,6 +45,12 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":design_system"))
 
+    /*** API Libraries ***/
+    implementation(platform(libs.retrofit.bom))
+    implementation(libs.retrofit)
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
+
     /*** DI Libraries ***/
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.android.compiler)

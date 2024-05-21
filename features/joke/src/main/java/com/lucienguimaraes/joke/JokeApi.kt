@@ -6,5 +6,5 @@ import retrofit2.http.Query
 interface JokeApi {
 
     @GET("joke/Programming/Any")
-    suspend fun getJoke(@Query("safe-mode") safeMode: Boolean): Joke
+    suspend fun getJoke(@Query("safe-mode") safeMode: Boolean): JokeResponse
 }

@@ -6,33 +6,30 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
 @Module
-class NetworkConnectorModule {
+@InstallIn(SingletonComponent::class)
+object NetworkConnectorModule {
 
-    @Singleton
+    private const val BASE_URL ="https://v2.jokeapi.dev"
+    private const val LOGGING = true
+
     @Provides
     internal fun provideMoshi() = Moshi.Builder().build()
 
-    @Singleton
     @Provides
-    internal fun provideHttpClient() = HttpClient()
+    internal fun provideHttpClient() = HttpClient(LOGGING)
 
-    @Singleton
     @Provides
-    internal fun provideRetrofitClient(
-        moshi: Moshi,
-        okHttpClient: Lazy<HttpClient>,
-        @ApiEndPoint baseUrl: String,
-    ) = Retrofit
+    internal fun provideRetrofitClient(moshi: Moshi, okHttpClient: Lazy<HttpClient>) = Retrofit
         .Builder()
-        .baseUrl(baseUrl)
+        .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .callFactory { okHttpClient.get().getOkHttpClient().newCall(it) }
         .build()
 
-    @Singleton
     @Provides
     internal fun provideNetworkConnector(retrofit: Retrofit): NetworkConnector =
         NetworkConnectorImpl(retrofit)

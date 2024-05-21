@@ -16,13 +16,12 @@ class JokeViewModel @Inject constructor(private val jokeRepository: JokeReposito
     fun fetchNewJoke() {
         viewModelScope.launch {
             uiState.value = uiState.value.copy(loading = true)
-            delay(2000L)
             jokeRepository
                 .fetchJoke()
                 .onSuccess { joke ->
                     uiState.value = uiState.value.copy(
                         loading = false,
-                        joke = joke.content.joinToString("\n")
+                        joke = joke.content?.joinToString("\n")
                     )
                 }
                 .onFailure {
