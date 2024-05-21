@@ -32,7 +32,7 @@ internal fun JokeScreen(
         ) {
             Text(
                 modifier = Modifier.weight(1f),
-                text = jokeUIState.joke?.content?.firstOrNull()?: stringResource(id = R.string.joke_placeholder),
+                text = jokeUIState.joke?: stringResource(id = R.string.joke_placeholder),
                 style = MaterialTheme.typography.bodyLarge,
             )
             Spacer(Modifier.size(16.dp))

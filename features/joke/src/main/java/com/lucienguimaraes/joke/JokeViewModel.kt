@@ -20,7 +20,10 @@ class JokeViewModel @Inject constructor(private val jokeRepository: JokeReposito
             jokeRepository
                 .fetchJoke()
                 .onSuccess { joke ->
-                    uiState.value = uiState.value.copy(loading = false, joke = joke)
+                    uiState.value = uiState.value.copy(
+                        loading = false,
+                        joke = joke.content.joinToString("\n")
+                    )
                 }
                 .onFailure {
                     uiState.value = uiState.value.copy(loading = false, error = true)
@@ -32,5 +35,5 @@ class JokeViewModel @Inject constructor(private val jokeRepository: JokeReposito
 data class JokeUIState(
     val error: Boolean = false,
     val loading: Boolean = false,
-    val joke: Joke? = null,
+    val joke: String? = null,
 )

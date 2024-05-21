@@ -24,7 +24,10 @@ enum class JokeType(val value: String) {
 
 fun jokeMock() = Joke(
     id = 23,
-    content = listOf("this is a joke"),
+    content = listOf(
+        "Why did the web developer walk out of a resturant in disgust?",
+        "The seating was laid out in tables.",
+    ),
     category = JokeCategory.ANY,
     type = JokeType.SINGLE,
 )
