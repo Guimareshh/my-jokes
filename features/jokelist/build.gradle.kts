@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lucienguimaraes.datasource"
+    namespace = "com.lucienguimaraes.jokelist"
     compileSdk = 34
 
     defaultConfig {
@@ -32,29 +32,41 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
+    }
 }
 
 dependencies {
-    implementation(project(":network"))
 
-
-    /*** Database Libraries ***/
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.annotation)
-
-    /*** API Libraries ***/
-    implementation(platform(libs.retrofit.bom))
-    implementation(libs.retrofit)
-    implementation(libs.moshi.kotlin)
-    ksp(libs.moshi.kotlin.codegen)
+    implementation(project(":datasource"))
+    implementation(project(":design_system"))
 
     /*** DI Libraries ***/
     implementation(libs.dagger.hilt.android)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     ksp(libs.dagger.hilt.android.compiler)
+
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     testImplementation(libs.junit)
     testImplementation(libs.turbine)
+    testImplementation(libs.kotlin.coroutine)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }

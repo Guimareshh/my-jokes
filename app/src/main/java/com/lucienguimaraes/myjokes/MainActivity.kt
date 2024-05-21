@@ -7,21 +7,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.lucienguimaraes.design_system.MyJokesTheme
-import com.lucienguimaraes.joke.addJoke
-import com.lucienguimaraes.myjokes.ui.AppBottomBar
 import com.lucienguimaraes.design_system.navigation.LeafScreen
 import com.lucienguimaraes.design_system.navigation.Screen
 import com.lucienguimaraes.design_system.navigation.currentTopScreenAsState
+import com.lucienguimaraes.joke.addJoke
+import com.lucienguimaraes.jokelist.addJokeList
+import com.lucienguimaraes.myjokes.ui.AppBottomBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -66,11 +66,7 @@ class MainActivity : ComponentActivity() {
                                 route = Screen.Favorite.route,
                                 startDestination = LeafScreen.FavoriteList.createRoute(Screen.Favorite),
                             ) {
-                                composable(LeafScreen.FavoriteList.createRoute(Screen.Favorite)) {
-                                    Surface(modifier = Modifier.fillMaxSize()) {
-                                        Text(text = LeafScreen.FavoriteList.toString())
-                                    }
-                                }
+                                addJokeList(Screen.Favorite)
                             }
                         }
                     },

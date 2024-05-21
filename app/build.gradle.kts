@@ -55,12 +55,14 @@ dependencies {
 
     implementation(project(":design_system"))
     implementation(project(":features:joke"))
+    implementation(project(":features:jokelist"))
 
     /*** DI Libraries ***/
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.android.compiler)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
