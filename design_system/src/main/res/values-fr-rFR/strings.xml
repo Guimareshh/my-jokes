@@ -5,4 +5,6 @@
     <string name="home_tab_title">Acceuil</string>
     <string name="favorite_tab_title">Favoris</string>
     <string name="joke_placeholder">Appuyer sur le bouton pour avoir une nouvelle blague</string>
+    <string name="generic_error_message">Veuillez nous excuser, nous ne sommes pas en mesure de traiter votre demande.</string>
+    <string name="ok">Ok</string>
 </resources>

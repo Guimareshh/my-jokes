@@ -20,6 +20,7 @@ fun NavGraphBuilder.addJoke(root: Screen) {
             jokeUIState = uiState,
             onGetJokeClick = viewModel::fetchNewJoke,
             onFavoriteClick = viewModel::saveJoke,
+            onDismissDialog = viewModel::dismissError,
         )
     }
 }

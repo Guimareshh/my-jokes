@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +31,7 @@ internal fun JokeScreen(
     jokeUIState: JokeUIState,
     onGetJokeClick: () -> Unit,
     onFavoriteClick: () -> Unit,
+    onDismissDialog: () -> Unit,
 ) {
     Surface(modifier) {
         Column(
@@ -39,7 +42,7 @@ internal fun JokeScreen(
         ) {
             Text(
                 modifier = Modifier.weight(1f),
-                text = jokeUIState.joke?.content?: stringResource(id = R.string.joke_placeholder),
+                text = jokeUIState.joke?.content ?: stringResource(id = R.string.joke_placeholder),
                 style = MaterialTheme.typography.bodyLarge,
             )
 
@@ -65,6 +68,25 @@ internal fun JokeScreen(
             )
         }
     }
+    if (jokeUIState.error) {
+        AlertDialog(
+            title = {
+                Text(
+                    text = stringResource(id = R.string.generic_error_message),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+            },
+            confirmButton = {
+                TextButton(onClick = onDismissDialog) {
+                    Text(
+                        text = stringResource(id = R.string.ok),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
+            },
+            onDismissRequest = onDismissDialog,
+        )
+    }
 }
 
 @Composable
@@ -76,6 +98,7 @@ internal fun JokeScreenPreview() {
             jokeUIState = JokeUIState(),
             onGetJokeClick = {},
             onFavoriteClick = {},
+            onDismissDialog = {},
         )
     }
 }

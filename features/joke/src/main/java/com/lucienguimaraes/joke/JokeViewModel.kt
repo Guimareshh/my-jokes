@@ -31,6 +31,10 @@ class JokeViewModel @Inject constructor(private val jokeRepository: JokeReposito
     fun saveJoke() {
         //TODO to implement
     }
+
+    fun dismissError() {
+        uiState.value = uiState.value.copy(error = false)
+    }
 }
 
 data class JokeUIState(
