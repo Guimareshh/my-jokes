@@ -15,13 +15,5 @@ internal data class JokeResponse(
 @JsonClass(generateAdapter = false)
 internal enum class JokeType {
     single,
-    twopart
+    twopart,
 }
-
-internal fun jokeResponseMock() = JokeResponse(
-    id = 23,
-    joke = null,
-    type = JokeType.twopart,
-    delivery = "Why did the web developer walk out of a restaurant in disgust?",
-    setup = "The seating was laid out in tables.",
-)
