@@ -12,18 +12,44 @@ internal class JokeRepositoryImpl @Inject constructor(
 ) : JokeRepository {
 
     /**
-     * Fetch a new joke object from network and map it to a more concise and readable joke entity
+     * Fetch a new joke object from network. We also check if the new joke is already exist in local
+     * db to use it instead
      */
     override suspend fun fetchJoke(): Result<JokeEntity> = try {
         val jokeResponse = jokeApi.getJoke(true)
-        val jokeEntity = JokeEntity(
-            id = jokeResponse.id.toLong(),
-            content = when(jokeResponse.type) {
-                JokeType.single -> jokeResponse.joke ?: ""
-                JokeType.twopart -> "${jokeResponse.setup}\n\n${jokeResponse.delivery}"
-            }
-        )
+
+        val jokeEntity = jokeDao
+            .getJokeById(jokeResponse.id.toLong())
+            ?: JokeEntity(
+                id = jokeResponse.id.toLong(),
+                content = when (jokeResponse.type) {
+                    JokeType.single -> jokeResponse.joke ?: ""
+                    JokeType.twopart -> "${jokeResponse.setup}\n\n${jokeResponse.delivery}"
+                }
+            )
+
         Result.success(jokeEntity)
+    } catch (exception: Exception) {
+        Result.failure(exception)
+    }
+
+    /**
+     * Save the joke in local DB and setting it to favorite by default
+     */
+    override suspend fun saveJoke(joke: JokeEntity) = try {
+        val savedJoke = joke.copy(favorite = true)
+        jokeDao.insert(savedJoke)
+        Result.success(savedJoke)
+    } catch (exception: Exception) {
+        Result.failure(exception)
+    }
+
+    /**
+     * Remove the joke from local DB and return the check without being in favorite
+     */
+    override suspend fun deleteJoke(joke: JokeEntity): Result<JokeEntity> = try {
+        jokeDao.delete(joke)
+        Result.success(joke.copy(favorite = false))
     } catch (exception: Exception) {
         Result.failure(exception)
     }
@@ -31,4 +57,6 @@ internal class JokeRepositoryImpl @Inject constructor(
 
 interface JokeRepository {
     suspend fun fetchJoke(): Result<JokeEntity>
+    suspend fun saveJoke(joke: JokeEntity): Result<JokeEntity>
+    suspend fun deleteJoke(joke: JokeEntity): Result<JokeEntity>
 }
